@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Gridview from "./gridview/gridview";
 
 class Stuff extends Component{
     render() {
@@ -12,6 +13,7 @@ class Stuff extends Component{
                     <li>赤橙黄绿</li>
                     <li>青蓝紫</li>
                 </ol>
+                <Gridview name=""/>
             </div>
         );
     }

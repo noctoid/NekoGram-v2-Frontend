@@ -7,6 +7,7 @@ import {
 import Home from "./home";
 import Stuff from "./stuff";
 import Contact from "./contact";
+import Gridview from "./gridview/gridview";
 
 class Main extends Component {
     render() {
@@ -22,7 +23,7 @@ class Main extends Component {
                     <div className="content">
                         <Route exact path="/" component={Home}/>
                         <Route path="/stuff" component={Stuff}/>
-                        <Route path="/contact" component={Contact}/>
+                        <Route path="/contact" component={Gridview}/>
                     </div>
                 </div>
             </HashRouter>
