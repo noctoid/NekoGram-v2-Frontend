@@ -17,16 +17,21 @@ class Gridview extends Component {
             "key": "pid",
             "value": "758a85ca-f710-43f3-87b0-a16823abe888"
         };
+        console.log(JSON.stringify(request_form));
         fetch(
-            "http://127.0.0.1:8000/p/read/",
+            "http://10.0.1.182:8000/p/read/",
             {
                 method: "POST",
-                mode: "no-cors",
+                // mode: "no-cors",
                 cache: "default",
                 credentials: "omit",
+                // headers: {
+                //   'Access-Control-Allow-Origin': '*',
+                //     'Content-Type': "application/json"
+                // },
                 body: JSON.stringify(request_form),
             })
-            .then(res => res.json())
+            .then(response => response.json())
             .then(
                 (result) => {
                     this.setState({
@@ -48,12 +53,21 @@ class Gridview extends Component {
             console.log(items);
             return (<div>Error: {error.message}</div>);
         } else if (!isLoaded) {
+            console.log(items);
             console.log("咕叽...？");
             return (<div>Loading...</div>);
         } else {
+            console.log(items);
             console.log("咕叽？!");
+            let foobar = items.txt;
+            console.log(foobar);
             return (
-                <p>done</p>
+                <div>
+                    <p>咕叽!</p>
+                    <p>{foobar}</p>
+                    <p>{items.txt}</p>
+                    <p>{items.pid}</p>
+                </div>
             );
         }
     }
