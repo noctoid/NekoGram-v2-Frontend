@@ -1,3 +1,5 @@
-# NekoGram v2 Frontend APP
-The brand new version of NekoGram front end app!
-Now written with React, brings a cleaner structure and better experience.
+# react-redux-jwt-authentication-example
+
+React + Redux - JWT Authentication Tutorial & Example
+
+For documentation and further details go to http://jasonwatmore.com/post/2017/12/07/react-redux-jwt-authentication-tutorial-example
