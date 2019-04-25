@@ -50,7 +50,7 @@ function getProfile() {
           headers: authHeader(),
           body: JSON.stringify({"token": current_user_token()})
       }
-    ).then(handle_getMyPostsData)
+    ).then(handle_getProfileData)
 }
 
 function getAll() {
@@ -113,5 +113,13 @@ function handle_getMyPostsData(response) {
         // console.log("data should be ", data);
         return data.result;
     });
+}
+
+function handle_getProfileData(response) {
+  return response.text().then(text => {
+    const data = text && JSON.parse(text);
+    // console.log("data should be ", data);
+    return data;
+  });
 }
 
