@@ -73,15 +73,25 @@ function handleResponse(response) {
     });
 }
 
+// function getMyPosts() {
+//     return fetch(
+//         "http://127.0.0.1/api/p/u_get_plist/",
+//         // "http://127.0.0.1:8000/",
+//         {
+//             method: "OPTIONS",
+//             headers: authHeader(),
+//             body: JSON.stringify({"username": "noctoid"}),
+//         }).then(handle_getMyPostsData)
+// }
+
 function getMyPosts() {
-    return fetch(
-        "http://127.0.0.1/api/p/u_get_plist/",
-        // "http://127.0.0.1:8000/",
-        {
-            method: "OPTIONS",
-            headers: authHeader(),
-            body: JSON.stringify({"username": "noctoid"}),
-        }).then(handle_getMyPostsData)
+  return fetch(
+    "http://127.0.0.1/api/p/read_my_posts/",
+    {
+      method: "OPTIONS",
+      headers: authHeader(),
+      body: JSON.stringify({"username": "noctoid"})
+    }).then(handle_getMyPostsData)
 }
 
 function handle_getMyPostsData(response) {
