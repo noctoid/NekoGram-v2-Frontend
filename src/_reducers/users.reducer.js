@@ -19,6 +19,19 @@ export const users = (state = {}, action) => {
   }
 };
 
+export const profile = (state = {}, action) => {
+  switch (action.type) {
+    case userConstants.GETPROFILE_REQUEST:
+      return {loading: true};
+    case userConstants.GETPROFILE_SUCCESS:
+      return {items: action.profile};
+    case userConstants.GETMYPOSTS_FAILURE:
+      return {items: action.error};
+    default:
+      return state;
+  }
+};
+
 export const myposts = (state = {}, action) => {
   switch (action.type) {
     case userConstants.GETMYPOSTS_REQUEST:

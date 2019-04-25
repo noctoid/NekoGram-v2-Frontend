@@ -1,11 +1,13 @@
 
 import { authHeader } from '../_helpers';
+import { current_user_token } from "../_helpers";
 
 export const userService = {
     login,
     logout,
     getAll,
-    getMyPosts
+    getMyPosts,
+    getProfile
 };
 
 function login(username, password) {
@@ -38,6 +40,17 @@ function login(username, password) {
 function logout() {
     // remove user from local storage to log user out
     localStorage.removeItem('user');
+}
+
+function getProfile() {
+    return fetch(
+      "http://127.0.0.1/api/u/read/",
+      {
+          method: "OPTIONS",
+          headers: authHeader(),
+          body: JSON.stringify({"token": current_user_token()})
+      }
+    ).then(handle_getMyPostsData)
 }
 
 function getAll() {
@@ -97,7 +110,7 @@ function getMyPosts() {
 function handle_getMyPostsData(response) {
     return response.text().then(text => {
         const data = text && JSON.parse(text);
-        console.log("data should be ", data);
+        // console.log("data should be ", data);
         return data.result;
     });
 }

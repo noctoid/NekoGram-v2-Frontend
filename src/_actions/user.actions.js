@@ -8,6 +8,7 @@ export const userActions = {
     logout,
     getAll,
     getMyPosts,
+    getProfile
 };
 
 function login(username, password) {
@@ -51,6 +52,22 @@ function getAll() {
     function request() { return { type: userConstants.GETALL_REQUEST } }
     function success(users) { return { type: userConstants.GETALL_SUCCESS, users } }
     function failure(error) { return { type: userConstants.GETALL_FAILURE, error } }
+}
+
+function getProfile() {
+    return dispatch => {
+        dispatch(request());
+
+        userService.getProfile()
+          .then(
+            profile => dispatch(success(profile)),
+            error => dispatch(failure(error))
+          );
+    };
+
+    function request() { return { type: userConstants.GETPROFILE_REQUEST}}
+    function success(profile) { return { type: userConstants.GETPROFILE_SUCCESS, profile }}
+    function failure(error) { return { type: userConstants.GETMYPOSTS_FAILURE, error }}
 }
 
 function getMyPosts() {

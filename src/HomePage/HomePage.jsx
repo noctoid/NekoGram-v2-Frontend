@@ -12,6 +12,7 @@ import {ProfilePage} from "../ProfilePage";
 class HomePage extends React.Component {
   componentDidMount() {
     this.props.dispatch(userActions.getMyPosts());
+    // this.props.dispatch(userActions.getProfile());
   };
 
   render() {
