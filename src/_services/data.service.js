@@ -1,4 +1,5 @@
 import { authHeader} from "../_helpers";
+import fetch from "cross-fetch";
 
 export const dataService = {
     getPosting,

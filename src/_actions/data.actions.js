@@ -8,7 +8,7 @@ export const dataActions = {
 
 function getPosting(pid) {
     return dispatch => {
-        console.log("i am called!");
+        console.log("i am called!", pid);
         dispatch(request({pid}));
 
         dataService.getPosting(pid)
