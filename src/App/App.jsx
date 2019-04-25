@@ -7,6 +7,7 @@ import { alertActions } from '../_actions';
 import { PrivateRoute } from '../_components';
 import { HomePage } from '../HomePage';
 import { LoginPage } from '../LoginPage';
+import { ProfilePage } from "../ProfilePage";
 
 class App extends React.Component {
     constructor(props) {
@@ -32,6 +33,9 @@ class App extends React.Component {
                             <div>
                                 <PrivateRoute exact path="/" component={HomePage} />
                                 <Route path="/login" component={LoginPage} />
+                                <Route path="/profile" component={ProfilePage} />
+                                <Route path="/114514" render={()=>
+                                  <iframe src="http://www.hochmuth.com/mp3/Haydn_Cello_Concerto_D-1.mp3"></iframe>} />
                             </div>
                         </Router>
                     </div>

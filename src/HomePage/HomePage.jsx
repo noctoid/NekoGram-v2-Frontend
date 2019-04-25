@@ -1,11 +1,13 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import {Link, BrowserRouter as Router, Route} from 'react-router-dom';
 import {connect} from 'react-redux';
 
 import {userActions} from '../_actions';
 import {dataActions} from "../_actions";
 
+import {LoginPage} from "../LoginPage";
 import {Posting} from "../MediaFrames/Posting";
+import {ProfilePage} from "../ProfilePage";
 
 class HomePage extends React.Component {
   componentDidMount() {
@@ -15,49 +17,38 @@ class HomePage extends React.Component {
   render() {
     const {myposts} = this.props;
 
-    // console.log("front console", myposts);
-    // console.log("JSON", JSON.stringify(myposts));
-    console.log(this.props);
-    console.log(myposts);
-    // return (
-    //   <div className="col-md-6 col-md-offset-3">
-    //     <h1>NekoGram!</h1>
-    //     <h3>Posts</h3>
-        {/*<div>*/}
-          {/*{myposts.loading && <em>Loading Posts...</em>}*/}
-          {/*{myposts.error && <span className="text-danger">ERROR: {myposts.error}</span>}*/}
-          {/*{myposts.items &&*/}
-          {/*<div>*/}
-            {/*{myposts.items.map((i, index1) =>*/}
-              {/*<Posting key={index1} pid={i}/>*/}
-            {/*)}*/}
-          {/*</div>*/}
-          {/*}*/}
-        {/*</div>*/}
-        {/*<p>*/}
-          {/*<Link to="/login">Logout</Link>*/}
-        {/*</p>*/}
-      {/*</div>*/}
-    // );
     return (
-      <div className="col-md-6 col-md-offset-1">
-        <h2>NekoGram!</h2>
-        <h3>My Posts</h3>
-        <div>
-          {myposts.loading && <em>Loading Posts...</em>}
-          {myposts.error && <span className="text-danger">ERROR: {myposts.error}</span>}
-          {myposts.items &&
-          <div>
-            {myposts.items.map((i, index1) =>
-              <Posting key={index1} posting={i}/>
-            )}
-          </div>
-          }
+      <Router>
+        <div className="col-md-6 col-md-offset-1">
+          <h2>NekoGram!</h2>
+          {/*My Posts*/}
+          <Route path="/login" component={LoginPage}/>
+          <Route path="/" exact render={() =>
+            <div>
+              <h3>My Posts</h3>
+              <div>
+                {myposts.loading && <em>Loading Posts...</em>}
+                {myposts.error && <span className="text-danger">ERROR: {myposts.error}</span>}
+                {myposts.items &&
+                <div>
+                  {myposts.items.map((i, index1) =>
+                    <Posting key={index1} posting={i}/>
+                  )}
+                </div>
+                }
+              </div>
+            </div>
+          }/>
+          {/*Profile Page*/}
+          <Route path="/profile" component={ProfilePage}/>
+          <p>
+            <Link to="/login">Logout</Link>
+            <Link to="/"> | Home | </Link>
+            <Link to="/profile">Profile</Link>
+          </p>
+
         </div>
-        <p>
-          <Link to="/login">Logout</Link>
-        </p>
-      </div>
+      </Router>
     );
   }
 }
