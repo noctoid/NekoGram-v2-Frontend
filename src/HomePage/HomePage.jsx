@@ -12,11 +12,11 @@ import {ProfilePage} from "../ProfilePage";
 class HomePage extends React.Component {
   componentDidMount() {
     this.props.dispatch(userActions.getMyPosts());
-    // this.props.dispatch(userActions.getProfile());
+    this.props.dispatch(userActions.getProfile());
   };
 
   render() {
-    const {myposts} = this.props;
+    const {myposts, profile} = this.props;
 
     return (
       <Router>
@@ -26,7 +26,7 @@ class HomePage extends React.Component {
           <Route path="/login" component={LoginPage}/>
           <Route path="/" exact render={() =>
             <div>
-              <h3>My Posts</h3>
+              <h3>{profile.items && profile.items.displayName} My Posts</h3>
               <div>
                 {myposts.loading && <em>Loading Posts...</em>}
                 {myposts.error && <span className="text-danger">ERROR: {myposts.error}</span>}
@@ -60,10 +60,10 @@ class HomePage extends React.Component {
 function mapStateToProps(state) {
   // console.log("state is ", state);
   // console.log(state.myposts);
-  const {myposts} = state;
+  const {myposts, profile} = state;
   // console.log(myposts);
 
-  return {myposts};
+  return {myposts, profile};
   // const { users, authentication } = state;
   // const { user } = authentication;
   // return {
