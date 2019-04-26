@@ -16,7 +16,9 @@ class ProfilePage extends React.Component {
     return (
       <div>
         <h1>ProfilePage</h1>
-        <p>{profile.items && profile.items.userid}</p>
+        <p>{profile.items && profile.items.uid}</p>
+        <p>{profile.items && profile.items.username}</p>
+        <p>{profile.items && profile.items.displayName}</p>
       </div>
     );
   }

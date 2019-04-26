@@ -1,5 +1,5 @@
 
-import { authHeader } from '../_helpers';
+import {authHeader, get_username} from '../_helpers';
 import { current_user_token } from "../_helpers";
 
 export const userService = {
@@ -31,8 +31,8 @@ function login(username, password) {
             // store user details and jwt token in local storage to keep user logged in between page refreshes
             // alert("user is" + user['access_token']);
             localStorage.setItem('user', JSON.stringify(user));
-            localStorage.setItem('token', JSON.stringify(user['access_token']));
-
+            localStorage.setItem('token', user['access_token']);
+            localStorage.setItem('username', username);
             return user;
         });
 }
@@ -40,6 +40,7 @@ function login(username, password) {
 function logout() {
     // remove user from local storage to log user out
     localStorage.removeItem('user');
+    localStorage.removeItem('token');
 }
 
 function getProfile() {
@@ -48,9 +49,9 @@ function getProfile() {
       {
           method: "OPTIONS",
           headers: authHeader(),
-          body: JSON.stringify({"token": current_user_token()})
+          body: JSON.stringify({"username": get_username()})
       }
-    ).then(handle_getProfileData)
+    ).then(handle_getMyPostsData)
 }
 
 function getAll() {
@@ -113,13 +114,5 @@ function handle_getMyPostsData(response) {
         // console.log("data should be ", data);
         return data.result;
     });
-}
-
-function handle_getProfileData(response) {
-  return response.text().then(text => {
-    const data = text && JSON.parse(text);
-    // console.log("data should be ", data);
-    return data;
-  });
 }
 

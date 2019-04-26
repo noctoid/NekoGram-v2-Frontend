@@ -20,7 +20,7 @@ class HomePage extends React.Component {
 
     return (
       <Router>
-        <div className="col-md-6 col-md-offset-1">
+        <div className="col-md-8">
           <h2>NekoGram!</h2>
           {/*My Posts*/}
           <Route path="/login" component={LoginPage}/>
@@ -43,9 +43,11 @@ class HomePage extends React.Component {
           {/*Profile Page*/}
           <Route path="/profile" component={ProfilePage}/>
           <p>
-            <Link to="/login">Logout</Link>
-            <Link to="/"> | Home | </Link>
-            <Link to="/profile">Profile</Link>
+            <Link to="/login"> Logout </Link>|
+            <Link to="/"> Home </Link>|
+            <Link to="/profile"> Profile </Link>|
+            <Link to="/discover"> Discover </Link>|
+            <Link to="/feed"> Feed </Link>
           </p>
 
         </div>
