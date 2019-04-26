@@ -14,8 +14,8 @@ class ProfilePage extends React.Component {
     console.log("ProfilePage", this.props);
 
     return (
-      <div>
-        <h1>ProfilePage</h1>
+      <div className="col-md-8 col-sm-12">
+        <h2>ProfilePage</h2>
         <p>{profile.items && profile.items.uid}</p>
         <p>{profile.items && profile.items.username}</p>
         <p>{profile.items && profile.items.displayName}</p>
