@@ -1,8 +1,9 @@
-import { authHeader} from "../_helpers";
+import { authHeader, get_uid } from "../_helpers";
 import fetch from "cross-fetch";
 
 export const dataService = {
     getPosting,
+  newPost
 };
 
 function getPosting(pid) {
@@ -23,4 +24,25 @@ function handle_getPostingData(response) {
         // console.log("data should be ", data);
         return data.result;
     });
+}
+
+
+function newPost(txt, media) {
+  // alert(txt);
+  return fetch(
+    "http://127.0.0.1/api/p/create/",
+    {
+      method: "OPTIONS",
+      headers: authHeader(),
+      body: JSON.stringify({
+        "uid": get_uid(),
+        "content": {
+          "txt": txt,
+          "hasMedia": false
+        },
+        "type": "posting",
+        "public": true
+      })
+    }
+  ).then(handle_getPostingData)
 }

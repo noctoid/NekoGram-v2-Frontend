@@ -30,6 +30,7 @@ function login(username, password) {
         .then(user => {
             // store user details and jwt token in local storage to keep user logged in between page refreshes
             // alert("user is" + user['access_token']);
+            console.log(user);
             localStorage.setItem('user', JSON.stringify(user));
             localStorage.setItem('token', user['access_token']);
             localStorage.setItem('username', username);
@@ -51,7 +52,7 @@ function getProfile() {
           headers: authHeader(),
           body: JSON.stringify({"username": get_username()})
       }
-    ).then(handle_getMyPostsData)
+    ).then(handle_getMyProfileData)
 }
 
 function getAll() {
@@ -87,16 +88,6 @@ function handleResponse(response) {
     });
 }
 
-// function getMyPosts() {
-//     return fetch(
-//         "http://127.0.0.1/api/p/u_get_plist/",
-//         // "http://127.0.0.1:8000/",
-//         {
-//             method: "OPTIONS",
-//             headers: authHeader(),
-//             body: JSON.stringify({"username": "noctoid"}),
-//         }).then(handle_getMyPostsData)
-// }
 
 function getMyPosts() {
   return fetch(
@@ -114,5 +105,14 @@ function handle_getMyPostsData(response) {
         // console.log("data should be ", data);
         return data.result;
     });
+}
+
+function handle_getMyProfileData(response) {
+  return response.text().then(text => {
+    const data = text && JSON.parse(text);
+    console.log("data should be ", data);
+    localStorage.setItem("uid", data.result.uid)
+    return data.result;
+  });
 }
 
