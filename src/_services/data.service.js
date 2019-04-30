@@ -1,6 +1,8 @@
 import { authHeader, get_uid } from "../_helpers";
 import fetch from "cross-fetch";
 
+import {apiConstants} from "../_constants";
+
 export const dataService = {
     getPosting,
   newPost,
@@ -9,7 +11,8 @@ export const dataService = {
 
 function getPosting(pid) {
     return fetch(
-        "http://127.0.0.1/api/p/read/",
+      apiConstants.getPosting,
+        // "http://127.0.0.1/api/p/read/",
         // "http://127.0.0.1:8000/",
         {
             method: "OPTIONS",
@@ -32,7 +35,8 @@ function newPost(txt, mediaUrl) {
   if (mediaUrl) {
     console.log("finally", mediaUrl)
     return fetch(
-      "http://127.0.0.1/api/p/create/",
+      // "http://127.0.0.1/api/p/create/",
+      apiConstants.newPost,
       {
         method: "OPTIONS",
         headers: authHeader(),
@@ -71,7 +75,8 @@ function newPost(txt, mediaUrl) {
 
 function newMedia(media) {
   return fetch(
-    "http://127.0.0.1/api/p/new_media/",
+    apiConstants.media,
+    // "http://127.0.0.1/api/p/new_media/",
     {
       method: "OPTIONS",
       headers: authHeader(),
