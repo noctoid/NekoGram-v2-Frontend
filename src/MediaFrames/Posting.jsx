@@ -8,10 +8,12 @@ class Posting extends Component {
     // console.log("Posting >>>", this.props);
     // generate the media block containing the media
     let postingMedia;
-    if (posting.content.mimeType == "image/png" || posting.content.mimeType == "image/jpeg" || posting.content.mimeType == "image/webp" ) {
-      postingMedia = <img className="img-responsive" src={posting.content.mediaUrl} alt="media"/>;
-    } else {
-      postingMedia = <p>TODO</p>;
+    if (posting.content.hasMedia) {
+      if (posting.content.mimeType == "image/png" || posting.content.mimeType == "image/jpeg" || posting.content.mimeType == "image/webp") {
+        postingMedia = <img className="img-responsive" src={posting.content.mediaUrl} alt="media"/>;
+      } else {
+        postingMedia = <p>TODO</p>;
+      }
     }
 
     // count for likes, comments, and reposts
@@ -20,7 +22,7 @@ class Posting extends Component {
     let repostCount = posting.repost.length;
 
     return (
-      <div>
+      <div className="panel panel-default posting">
         {/*<p>pid: {posting.pid}</p>*/}
         <h4>{posting.uid}</h4>
         <p>{posting.content.txt}</p>

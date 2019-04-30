@@ -30,3 +30,16 @@ export const postStatus = (state = {}, action) => {
       return state;
   }
 };
+
+export const mediaUrl = (state = {}, action) => {
+  switch (action.type) {
+    case dataConstants.NEW_MEDIA_REQUEST:
+      return {loading: true};
+    case dataConstants.NEW_MEDIA_SUCCESS:
+      return {items: action.mediaUrl};
+    case dataConstants.NEW_MEDIA_FAILURE:
+      return {items: action.error};
+    default:
+      return state;
+  }
+};

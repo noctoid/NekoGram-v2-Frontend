@@ -5,7 +5,8 @@ import {alertActions} from "./alert.actions";
 
 export const dataActions = {
     getPosting,
-    newPost
+    newPost,
+    newMedia
 };
 
 
@@ -26,11 +27,11 @@ function getPosting(pid) {
     function failure(error) { return { type: dataConstants.GET_POSTING_FAILURE, error } }
 }
 
-function newPost(txt) {
+function newPost(txt, mediaUrl) {
     return dispatch => {
         dispatch(request({ txt }));
 
-        dataService.newPost(txt)
+        dataService.newPost(txt, mediaUrl)
           .then(
             postStatus => {
                 dispatch(success(postStatus));
@@ -44,4 +45,20 @@ function newPost(txt) {
     function request(postStatus) { return { type: dataConstants.NEW_POST_REQUEST, postStatus } }
     function success(postStatus) { return { type: dataConstants.NEW_POST_SUCCESS, postStatus } }
     function failure(error)      { return { type: dataConstants.NEW_POST_FAILURE, error } }
+}
+
+function newMedia(media) {
+    return dispatch => {
+        dispatch(request({media}));
+
+        dataService.newMedia(media)
+          .then(
+            mediaUrl => {dispatch(success(mediaUrl));},
+            error => {dispatch(failure(error));}
+          );
+    };
+
+    function request(mediaUrl) { return { type: dataConstants.NEW_MEDIA_REQUEST, mediaUrl}}
+    function success(mediaUrl) { return { type: dataConstants.NEW_MEDIA_SUCCESS, mediaUrl}}
+    function failure(error)    { return { type: dataConstants.NEW_MEDIA_FAILURE, error }}
 }

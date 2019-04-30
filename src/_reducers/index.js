@@ -6,6 +6,7 @@ import { profile } from './users.reducer';
 import { myposts } from "./users.reducer";
 import { posting } from "./data.reducer";
 import { postStatus } from "./data.reducer";
+import { mediaUrl } from './data.reducer';
 import { alert } from './alert.reducer';
 
 const rootReducer = combineReducers({
@@ -15,6 +16,7 @@ const rootReducer = combineReducers({
   myposts,
   posting,
   postStatus,
+  mediaUrl,
   alert
 });
 
