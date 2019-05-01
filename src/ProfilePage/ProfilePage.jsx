@@ -7,6 +7,8 @@ import {BlockPicker} from "react-color";
 
 import {apiConstants} from "../_constants";
 
+import {TopBar} from "../MediaFrames/TopBar";
+
 class ProfilePage extends React.Component {
   constructor(props) {
     super(props);
@@ -67,6 +69,7 @@ class ProfilePage extends React.Component {
 
     if (modified) {
       dispatch(userActions.editProfile(displayName, quote, themeColor, apiConstants.MediaServer+localStorage.getItem("mediaUrl")));
+      this.toEdit();
     }
   }
 
@@ -95,6 +98,7 @@ class ProfilePage extends React.Component {
 
     return (
       <div className="col-md-8 col-sm-12">
+        <TopBar abc="shit!"/>
         <h2>ProfilePage</h2>
         <div hidden={toEdit}>
           <p>{profile.items && profile.items.displayName}</p>

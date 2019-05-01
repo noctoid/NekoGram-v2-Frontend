@@ -12,6 +12,8 @@ import {Discover} from "../Discover";
 import {NewPost} from "../NewPost";
 
 import {apiConstants} from "../_constants";
+import {TopBar} from "../MediaFrames/TopBar";
+import {BriefProfile} from "../MediaFrames/BriefProfile";
 
 class HomePage extends React.Component {
   componentDidMount() {
@@ -25,34 +27,13 @@ class HomePage extends React.Component {
     return (
       <Router>
         <div>
-          <div className="row">
-            <div className="col-md-4">
-              <p>NekoGram!</p>
-            </div>
-            <div className="col-md-6">
-              <p>
-                <Link to="/"> Home </Link>|
-                <Link to="/profile"> Profile </Link>|
-                <Link to="/discover"> Discover </Link>|
-                <Link to="/feed"> Feed </Link>
-              </p>
-            </div>
-            <div className="col-md-2">
-              <p>
-                <Link to="/new_post" component={NewPost}>Post </Link>
-                <Link to="/login">| Logout</Link>
-              </p>
-            </div>
-          </div>
-
+          <TopBar/>
           {/*<div className="container">*/}
           <div className="row">
-            <div className="col-md-4 col-sm-12">
-              <img src={profile.items && profile.items.avatarUrl} className="img-responsive avatar-lg" />
-              <h3>{profile.items && profile.items.displayName}</h3>
-              <h5>@{profile.items && profile.items.username}</h5>
+            <BriefProfile avatarUrl={profile.items && profile.items.avatarUrl}
+                          displayName={profile.items && profile.items.displayName}
+                          username={profile.items && profile.items.username}/>
 
-            </div>
             {/*My Posts*/}
             <Route path="/login" component={LoginPage}/>
             <Route path="/" exact render={() =>
