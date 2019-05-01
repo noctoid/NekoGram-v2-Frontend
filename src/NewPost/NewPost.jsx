@@ -1,5 +1,5 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import {connect} from 'react-redux';
 import {dataActions} from "../_actions";
 
 
@@ -47,12 +47,13 @@ class NewPost extends React.Component {
     e.preventDefault();
 
     this.setState({submitted: true});
-    const { txt, mediaUrl } = this.state;
-    const { dispatch } = this.props;
-    console.log("handleSubmit-->",mediaUrl);
+    const {txt, mediaUrl} = this.state;
+    const {dispatch} = this.props;
+    console.log("handleSubmit-->", mediaUrl);
     if (txt) {
       // console.log(mediaBase64);
-      dispatch(dataActions.newPost(txt, "http://169.254.146.101:9000/"+localStorage.getItem("mediaUrl")));
+      dispatch(dataActions.newPost(txt, "http://169.254.146.101:9000/" + localStorage.getItem("mediaUrl")));
+      // dispatch(dataActions.newPost(txt, "http://169.254.146.101:9000/"+mediaUrl));
     }
   }
 
@@ -75,13 +76,14 @@ class NewPost extends React.Component {
         <form name="form" onSubmit={this.handleSubmit} hidden={submitted}>
           <div className={'form-group' + (submitted && !txt ? ' has-error' : '')}>
             <label htmlFor="txt">New Post</label>
-            <input type="text" className="form-control" name="txt" value={txt} onChange={this.handleChange} />
+            <input type="text" className="form-control" name="txt" value={txt} onChange={this.handleChange}/>
             {submitted && !txt &&
-              <div className="help-block">Text is required</div>
+            <div className="help-block">Text is required</div>
             }
             {$imagePreview}
             <label htmlFor="txt">Media</label>
-            <input type="file" className="form-control" ref={uploadFile} name="media" value={media} onChange={this._handleImageChange} />
+            <input type="file" className="form-control" ref={uploadFile} name="media" value={media}
+                   onChange={this._handleImageChange}/>
             {/*{submitted && !txt &&*/}
             {/*<div className="help-block">Text is required</div>*/}
             {/*}*/}
@@ -96,8 +98,8 @@ class NewPost extends React.Component {
         </form>
         <div hidden={!submitted}>
           <h3>Done!</h3>
-        <img src="https://img.icons8.com/bubbles/100/000000/checkmark.png"
-             className="img-responsive" />
+          <img src="https://img.icons8.com/bubbles/100/000000/checkmark.png"
+               className="img-responsive"/>
         </div>
       </div>
     )
@@ -105,8 +107,8 @@ class NewPost extends React.Component {
 }
 
 function mapStateToProps(state) {
-  const { postStatus } = state;
-  return { postStatus };
+  const {postStatus} = state;
+  return {postStatus};
 }
 
 const connectedNewPost = connect(mapStateToProps)(NewPost);

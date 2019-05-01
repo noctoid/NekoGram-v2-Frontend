@@ -43,3 +43,16 @@ export const mediaUrl = (state = {}, action) => {
       return state;
   }
 };
+
+export const likeResult = (state = {}, action) => {
+  switch (action.type) {
+    case dataConstants.LIKE_REQUEST:
+      return {loading: true};
+    case dataConstants.LIKE_SUCCESS:
+      return {items: action.likeResult};
+    case dataConstants.LIKE_FAILURE:
+      return {items: action.error};
+    default:
+      return state;
+  }
+};

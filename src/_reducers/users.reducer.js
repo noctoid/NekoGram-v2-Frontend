@@ -47,6 +47,19 @@ export const myposts = (state = {}, action) => {
   }
 };
 
+export const newProfile = (state = {}, action) => {
+  switch (action.type) {
+    case userConstants.EDIT_PROFILE_REQUEST:
+      return { loading: true };
+    case userConstants.EDIT_PROFILE_SUCCESS:
+      return {items: action.newProfile};
+    case userConstants.EDIT_PROFILE_FAILURE:
+      return {items: action.error};
+    default:
+      return state;
+  }
+};
+
 // export function myposts(state = {}, action) {
 //   switch (action.type) {
 //     case userConstants.GETMYPOSTS_REQUEST:

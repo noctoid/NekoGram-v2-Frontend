@@ -1,4 +1,4 @@
-import {authHeader, get_username} from '../_helpers';
+import {authHeader, get_username, get_uid} from '../_helpers';
 import {current_user_token} from "../_helpers";
 
 import {apiConstants} from "../_constants";
@@ -8,7 +8,8 @@ export const userService = {
   logout,
   getAll,
   getMyPosts,
-  getProfile
+  getProfile,
+  editProfile
 };
 
 function login(username, password) {
@@ -102,8 +103,24 @@ function handle_getMyProfileData(response) {
   return response.text().then(text => {
     const data = text && JSON.parse(text);
     console.log("data should be ", data);
-    localStorage.setItem("uid", data.result.uid)
+    localStorage.setItem("uid", data.result.uid);
     return data.result;
   });
 }
 
+function editProfile(displayName, quote, themeColor, avatarUrl) {
+  console.log("here i go");
+  return fetch(
+    apiConstants.editProfile,
+    {
+      method: "OPTIONS",
+      headers: authHeader(),
+      body: JSON.stringify({
+        "username": get_username(),
+        "displayName": displayName,
+        "quote": quote,
+        "themeColor": themeColor,
+        "avatarUrl": avatarUrl
+      })
+    }).then(console.log);
+}

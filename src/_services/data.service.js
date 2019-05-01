@@ -1,39 +1,40 @@
-import { authHeader, get_uid } from "../_helpers";
+import {authHeader, get_uid} from "../_helpers";
 import fetch from "cross-fetch";
 
 import {apiConstants} from "../_constants";
 
 export const dataService = {
-    getPosting,
+  getPosting,
   newPost,
-  newMedia
+  newMedia,
+  like
 };
 
 function getPosting(pid) {
-    return fetch(
-      apiConstants.getPosting,
-        // "http://127.0.0.1/api/p/read/",
-        // "http://127.0.0.1:8000/",
-        {
-            method: "OPTIONS",
-            headers: authHeader(),
-            body: JSON.stringify({"pid": pid}),
-        }).then(handle_getPostingData)
-        // }).then(res => res.text().then(console.log));
+  return fetch(
+    apiConstants.getPosting,
+    // "http://127.0.0.1/api/p/read/",
+    // "http://127.0.0.1:8000/",
+    {
+      method: "OPTIONS",
+      headers: authHeader(),
+      body: JSON.stringify({"pid": pid}),
+    }).then(handle_getPostingData)
+  // }).then(res => res.text().then(console.log));
 }
 
 function handle_getPostingData(response) {
-    return response.text().then(text => {
-        const data = text && JSON.parse(text);
-        // console.log("data should be ", data);
-        return data.result;
-    });
+  return response.text().then(text => {
+    const data = text && JSON.parse(text);
+    // console.log("data should be ", data);
+    return data.result;
+  });
 }
 
 
 function newPost(txt, mediaUrl) {
   if (mediaUrl) {
-    console.log("finally", mediaUrl)
+    // console.log("finally", mediaUrl);
     return fetch(
       // "http://127.0.0.1/api/p/create/",
       apiConstants.newPost,
@@ -90,10 +91,14 @@ function handle_newMedia(response) {
   return response.text().then(text => {
     const data = text && JSON.parse(text);
     // console.log("data should be ", data);
-    localStorage.setItem("mediaUrl", data.result)
+    localStorage.setItem("mediaUrl", data.result);
     return data.result;
   });
 }
+
+function like(uid, pid) {
+
+};
 
 function getBase64(file) {
   let reader = new FileReader();

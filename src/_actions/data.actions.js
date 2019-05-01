@@ -6,7 +6,10 @@ import {alertActions} from "./alert.actions";
 export const dataActions = {
     getPosting,
     newPost,
-    newMedia
+    newMedia,
+    like,
+    comment,
+    repost
 };
 
 
@@ -62,3 +65,23 @@ function newMedia(media) {
     function success(mediaUrl) { return { type: dataConstants.NEW_MEDIA_SUCCESS, mediaUrl}}
     function failure(error)    { return { type: dataConstants.NEW_MEDIA_FAILURE, error }}
 }
+
+function like(uid, pid) {
+    return dispatch => {
+        dispatch(request({uid, pid}));
+
+        dataService.like(uid, pid)
+          .then(
+            likeResult => {dispatch(success(likeResult));},
+            error => {dispatch(failure(error));}
+          );
+    };
+
+    function request(likeResult) { return {type: dataConstants.LIKE_REQUEST, likeResult}}
+    function success(likeResult) { return { type: dataConstants.LIKE_SUCCESS, likeResult}}
+    function failure(error) { return { type: dataConstants.LIKE_FAILURE, error}}
+}
+
+function comment() {}
+
+function repost() {}

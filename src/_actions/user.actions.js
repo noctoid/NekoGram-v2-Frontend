@@ -8,7 +8,8 @@ export const userActions = {
     logout,
     getAll,
     getMyPosts,
-    getProfile
+    getProfile,
+    editProfile
 };
 
 function login(username, password) {
@@ -83,4 +84,18 @@ function getMyPosts() {
     function request() {return { type: userConstants.GETMYPOSTS_REQUEST } }
     function success(myposts) { return { type: userConstants.GETMYPOSTS_SUCCESS, myposts } }
     function failure(error) { return { type: userConstants.GETMYPOSTS_FAILURE, error}}
+}
+
+function editProfile(displayName, quote, themeColor, avatarUrl) {
+    return dispatch => {
+        dispatch(request({displayName, quote, themeColor, avatarUrl}));
+        userService.editProfile(displayName, quote, themeColor, avatarUrl)
+          .then(
+            newProfile => dispatch(success(newProfile)),
+            error => dispatch(failure(error))
+          );
+    }
+    function request() {return { type: userConstants.EDIT_PROFILE_REQUEST } }
+    function success(newProfile) { return { type: userConstants.EDIT_PROFILE_SUCCESS, newProfile } }
+    function failure(error) { return { type: userConstants.EDIT_PROFILE_FAILURE, error}}
 }

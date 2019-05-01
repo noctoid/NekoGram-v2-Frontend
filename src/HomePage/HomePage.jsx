@@ -11,6 +11,8 @@ import {ProfilePage} from "../ProfilePage";
 import {Discover} from "../Discover";
 import {NewPost} from "../NewPost";
 
+import {apiConstants} from "../_constants";
+
 class HomePage extends React.Component {
   componentDidMount() {
     this.props.dispatch(userActions.getMyPosts());
@@ -46,6 +48,7 @@ class HomePage extends React.Component {
           {/*<div className="container">*/}
           <div className="row">
             <div className="col-md-4 col-sm-12">
+              <img src={profile.items && profile.items.avatarUrl} className="img-responsive avatar-lg" />
               <h3>{profile.items && profile.items.displayName}</h3>
               <h5>@{profile.items && profile.items.username}</h5>
 
