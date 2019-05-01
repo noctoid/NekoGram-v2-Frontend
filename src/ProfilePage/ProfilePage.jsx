@@ -98,7 +98,7 @@ class ProfilePage extends React.Component {
 
     return (
       <div className="col-md-8 col-sm-12">
-        <TopBar abc="shit!"/>
+        <TopBar />
         <h2>ProfilePage</h2>
         <div hidden={toEdit}>
           <p>{profile.items && profile.items.displayName}</p>
