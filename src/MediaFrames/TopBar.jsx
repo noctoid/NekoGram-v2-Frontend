@@ -5,7 +5,7 @@ import {NewPost} from "../NewPost";
 function TopBar(props) {
   return (
     <div className="row">
-      <div className="col-md-4">
+      <div className="col-md-3">
         <p>NekoGram!</p>
       </div>
       <div className="col-md-6">
@@ -16,9 +16,9 @@ function TopBar(props) {
           <Link to="/feed"> Feed </Link>
         </p>
       </div>
-      <div className="col-md-2">
+      <div className="col-md-3">
         <p>
-          <Link to="/new_post">Post </Link>
+          <Link to="/new_post" component={NewPost}>Post </Link>
           <Link to="/login">| Logout</Link>
         </p>
       </div>

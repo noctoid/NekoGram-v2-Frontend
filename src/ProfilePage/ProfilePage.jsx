@@ -8,6 +8,7 @@ import {BlockPicker} from "react-color";
 import {apiConstants} from "../_constants";
 
 import {TopBar} from "../MediaFrames/TopBar";
+import {BriefProfile} from "../MediaFrames/BriefProfile";
 
 class ProfilePage extends React.Component {
   constructor(props) {
@@ -64,11 +65,11 @@ class ProfilePage extends React.Component {
     e.preventDefault();
 
     this.setState({submitted: true});
-    const { displayName, quote, themeColor, modified } = this.state;
-    const { dispatch } = this.props;
+    const {displayName, quote, themeColor, modified} = this.state;
+    const {dispatch} = this.props;
 
     if (modified) {
-      dispatch(userActions.editProfile(displayName, quote, themeColor, apiConstants.MediaServer+localStorage.getItem("mediaUrl")));
+      dispatch(userActions.editProfile(displayName, quote, themeColor, apiConstants.MediaServer + localStorage.getItem("mediaUrl")));
       this.toEdit();
     }
   }
@@ -76,7 +77,6 @@ class ProfilePage extends React.Component {
   toEdit() {
     this.setState({toEdit: !this.state.toEdit});
   }
-
 
 
   componentDidMount() {
@@ -97,60 +97,66 @@ class ProfilePage extends React.Component {
     }
 
     return (
-      <div className="col-md-8 col-sm-12">
-        <TopBar />
-        <h2>ProfilePage</h2>
-        <div hidden={toEdit}>
-          <p>{profile.items && profile.items.displayName}</p>
-          <p>{profile.items && profile.items.username}</p>
-          <p>{profile.items && profile.items.uid}</p>
-          <p>{profile.items && profile.items.quote}</p>
-          <img src={profile.items && profile.items.avatarUrl} className="img-responsive" />
-          <button className="btn btn-primary" onClick={this.toEdit}>Edit</button>
-        </div>
+      <div>
+        <TopBar/>
+        <BriefProfile avatarUrl={profile.items && profile.items.avatarUrl}
+                      displayName={profile.items && profile.items.displayName}
+                      username={profile.items && profile.items.username}/>
+        <div className="col-md-8 col-sm-12">
 
-        <div hidden={!toEdit}>
-          <form name="form" onSubmit={this.handleSubmit}>
-            {/*<div className={'form-group' + (submitted && !txt ? ' has-error' : '')}>*/}
-            <div className="form-group">
+          <h2>ProfilePage</h2>
+          <div hidden={toEdit}>
+            <p>{profile.items && profile.items.displayName}</p>
+            <p>{profile.items && profile.items.username}</p>
+            <p>{profile.items && profile.items.uid}</p>
+            <p>{profile.items && profile.items.quote}</p>
+            <img src={profile.items && profile.items.avatarUrl} className="img-responsive"/>
+            <button className="btn btn-primary" onClick={this.toEdit}>Edit</button>
+          </div>
 
-              <label htmlFor="txt">Display Name</label>
-              <input type="text" className="form-control" name="displayName"
-                     value={displayName} onChange={this.handleChange}
-                     placeholder={profile.items && profile.items.displayName}/>
+          <div hidden={!toEdit}>
+            <form name="form" onSubmit={this.handleSubmit}>
+              {/*<div className={'form-group' + (submitted && !txt ? ' has-error' : '')}>*/}
+              <div className="form-group">
 
-              <label htmlFor="txt">Username</label>
-              <input type="text" className="form-control" disabled={true}
-                     placeholder={profile.items && "@" + profile.items.username} readOnly={true}/>
+                <label htmlFor="txt">Display Name</label>
+                <input type="text" className="form-control" name="displayName"
+                       value={displayName} onChange={this.handleChange}
+                       placeholder={profile.items && profile.items.displayName}/>
 
-              <label htmlFor="txt">User ID</label>
-              <input type="text" className="form-control" disabled={true}
-                     placeholder={profile.items && profile.items.uid} readOnly={true}/>
+                <label htmlFor="txt">Username</label>
+                <input type="text" className="form-control" disabled={true}
+                       placeholder={profile.items && "@" + profile.items.username} readOnly={true}/>
 
-              <label htmlFor="txt">Quote</label>
-              <input type="text" className="form-control" name="quote"
-                     value={quote} placeholder={profile.items && profile.items.quote}
-                     onChange={this.handleChange}/>
+                <label htmlFor="txt">User ID</label>
+                <input type="text" className="form-control" disabled={true}
+                       placeholder={profile.items && profile.items.uid} readOnly={true}/>
 
-              <label htmlFor="txt">Color Theme</label>
-              <BlockPicker color={themeColor} onChange={this.handleThemeColorChange}/>
-              {$imagePreview}
-              <label htmlFor="txt">Avatar</label>
-              <input type="file" className="form-control" ref={avatarFile}
-                     onChange={this.handleImageChange} name="media" value={media} />
-              {/*{submitted && !txt &&*/}
-              {/*<div className="help-block">Text is required</div>*/}
-              {/*}*/}
-            </div>
+                <label htmlFor="txt">Quote</label>
+                <input type="text" className="form-control" name="quote"
+                       value={quote} placeholder={profile.items && profile.items.quote}
+                       onChange={this.handleChange}/>
 
-            <div className="form-group">
-              <button className="btn btn-primary">Save</button>
-              {/*{postStatus &&*/}
-              {/*<img src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />*/}
-              {/*}*/}
-            </div>
-            <button className="btn btn-outline-primary" onClick={this.toEdit}>Cancel</button>
-          </form>
+                <label htmlFor="txt">Color Theme</label>
+                <BlockPicker color={themeColor} onChange={this.handleThemeColorChange}/>
+                {$imagePreview}
+                <label htmlFor="txt">Avatar</label>
+                <input type="file" className="form-control" ref={avatarFile}
+                       onChange={this.handleImageChange} name="media" value={media}/>
+                {/*{submitted && !txt &&*/}
+                {/*<div className="help-block">Text is required</div>*/}
+                {/*}*/}
+              </div>
+
+              <div className="form-group">
+                <button className="btn btn-primary">Save</button>
+                {/*{postStatus &&*/}
+                {/*<img src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />*/}
+                {/*}*/}
+              </div>
+              <button className="btn btn-outline-primary" onClick={this.toEdit}>Cancel</button>
+            </form>
+          </div>
         </div>
       </div>
     );
