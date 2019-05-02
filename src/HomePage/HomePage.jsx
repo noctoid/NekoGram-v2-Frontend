@@ -14,6 +14,7 @@ import {NewPost} from "../NewPost";
 import {apiConstants} from "../_constants";
 import {TopBar} from "../MediaFrames/TopBar";
 import {BriefProfile} from "../MediaFrames/BriefProfile";
+import {NewPostBall} from "../MediaFrames/NewPostBall";
 
 class HomePage extends React.Component {
   componentDidMount() {
@@ -37,7 +38,7 @@ class HomePage extends React.Component {
               <Route path="/" exact render={() =>
                 <div>
                   <TopBar/>
-                  <div className="row">
+                  <div className="row page-content">
                     <BriefProfile avatarUrl={profile.items && profile.items.avatarUrl}
                                   displayName={profile.items && profile.items.displayName}
                                   username={profile.items && profile.items.username}/>
@@ -53,6 +54,7 @@ class HomePage extends React.Component {
                       }
                     </div>
                   </div>
+                  <NewPostBall/>
                 </div>
               }/>
               <Route path="/profile" exact component={ProfilePage}/>

@@ -24,19 +24,19 @@ class Posting extends Component {
     return (
       <div className="panel panel-default posting">
         <div className="row">
-          <div className="col-md-2">
+          <div className="col-md-1">
             {/*<p>pid: {posting.pid}</p>*/}
-            <img src={posting.avatarUrl} className="img-responsive avatar-sm"/>
-            <h4>{posting.displayName}</h4>
-            <h5>@{posting.username}</h5>
+            <img src={posting.avatarUrl} className=" avatar-sm"/>
           </div>
-          {/*<h4>{posting.username}</h4>*/}
-          {/*<h4>{posting.uid}</h4>*/}
-          <div className="col-md-10">
-            <p>{posting.content.txt}</p>
-            {postingMedia}
-            <p>Comments: {commentCount} Repost: {repostCount} Likes: {likesCount}</p>
-          </div>
+          <div className="col-md-11">
+              <div className="col-md-12">
+                <h4>{posting.displayName} @{posting.username}</h4>
+                <hr />
+                <p>{posting.content.txt}</p>
+                {postingMedia}
+                <p>Comments: {commentCount} Repost: {repostCount} Likes: {likesCount}</p>
+              </div>
+            </div>
         </div>
       </div>
     );
