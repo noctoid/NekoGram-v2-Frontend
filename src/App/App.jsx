@@ -34,8 +34,12 @@ class App extends React.Component {
             <PrivateRoute exact path="/" component={HomePage}/>
             <Route path="/login" component={LoginPage}/>
             <Route path="/profile" component={ProfilePage}/>
-            <Route path="/114514" render={() =>
-              <iframe src="http://www.hochmuth.com/mp3/Haydn_Cello_Concerto_D-1.mp3"></iframe>}/>
+            <Route path="/114514" exact render={() =>
+              <div>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Flag_of_the_Soviet_Union.svg" />
+                <audio src="https://www.marxists.org/history/ussr/sounds/mp3/soviet-anthem.mp3" autoPlay></audio>
+              </div>
+              } />
           </div>
         </Router>
       </div>
