@@ -97,9 +97,21 @@ function handle_newMedia(response) {
   });
 }
 
-function like(uid, pid) {
-
-};
+function like(pid) {
+  console.log("like", pid);
+  const options = {
+    method: "OPTIONS",
+    headers: authHeader(),
+    body: JSON.stringify({
+      "uid": get_uid(),
+      "pid": pid
+    })
+  };
+  return fetch(
+    apiConstants.likePost,
+    options
+  ).then(res => res.text().then(console.log));
+}
 
 function deleteP(pid) {
   console.log(pid, "I AM RUNNING");

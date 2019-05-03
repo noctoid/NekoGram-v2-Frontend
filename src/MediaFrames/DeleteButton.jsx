@@ -19,7 +19,7 @@ class DeleteButton extends Component {
     return (
       <div>
         <button onClick={this.handleDelete}>
-          {this.props.pid}
+          Delete
         </button>
       </div>
     )

@@ -9,5 +9,6 @@ export const apiConstants = {
   getPosting: SERVER+"api/p/read/",
   newPost: SERVER+"api/p/create/",
   deletePost: SERVER+"api/p/delete/",
+  likePost: SERVER+"api/p/like/",
 };
 

@@ -67,19 +67,20 @@ function newMedia(media) {
     function failure(error)    { return { type: dataConstants.NEW_MEDIA_FAILURE, error }}
 }
 
-function like(uid, pid) {
+function like(pid) {
     return dispatch => {
-        dispatch(request({uid, pid}));
+        dispatch(request({pid}));
 
-        dataService.like(uid, pid)
+        dataService.like(pid);
+        userService.getMyPosts()
           .then(
-            likeResult => {dispatch(success(likeResult));},
+            myposts => {dispatch(success(myposts));},
             error => {dispatch(failure(error));}
           );
     };
 
-    function request(likeResult) { return {type: dataConstants.LIKE_REQUEST, likeResult}}
-    function success(likeResult) { return { type: dataConstants.LIKE_SUCCESS, likeResult}}
+    function request(myposts) { return {type: dataConstants.LIKE_REQUEST, myposts}}
+    function success(myposts) { return { type: dataConstants.LIKE_SUCCESS, myposts}}
     function failure(error) { return { type: dataConstants.LIKE_FAILURE, error}}
 }
 
