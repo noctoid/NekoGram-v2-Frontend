@@ -7,7 +7,8 @@ export const dataService = {
   getPosting,
   newPost,
   newMedia,
-  like
+  like,
+  deleteP
 };
 
 function getPosting(pid) {
@@ -99,6 +100,21 @@ function handle_newMedia(response) {
 function like(uid, pid) {
 
 };
+
+function deleteP(pid) {
+  console.log(pid, "I AM RUNNING");
+  return fetch(
+    apiConstants.deletePost,
+    {
+      method: "OPTIONS",
+      headers: authHeader(),
+      body: JSON.stringify({
+        "uid": get_uid(),
+        "pid": pid
+      })
+    }
+  ).then(res => res.text().then(console.log))
+}
 
 function getBase64(file) {
   let reader = new FileReader();

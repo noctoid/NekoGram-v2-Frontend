@@ -76,7 +76,7 @@ class NewPost extends React.Component {
       <div>
         <TopBar/>
 
-        <div className="col-md-6">
+        <div className="col-md-6 page-content">
 
           <form name="form" onSubmit={this.handleSubmit} hidden={submitted}>
             <div className={'form-group' + (submitted && !txt ? ' has-error' : '')}>

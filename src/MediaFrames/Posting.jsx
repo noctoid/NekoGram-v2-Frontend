@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+import {LikeButton} from "./LikeButton";
+import {DeleteButton} from "./DeleteButton";
 
 class Posting extends Component {
 
@@ -34,6 +36,9 @@ class Posting extends Component {
                 <hr />
                 <p>{posting.content.txt}</p>
                 {postingMedia}
+
+                <LikeButton pid={posting.pid}/>
+                <DeleteButton pid={posting.pid}/>
                 <p>Comments: {commentCount} Repost: {repostCount} Likes: {likesCount}</p>
               </div>
             </div>

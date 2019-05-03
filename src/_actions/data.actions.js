@@ -9,7 +9,8 @@ export const dataActions = {
     newMedia,
     like,
     comment,
-    repost
+    repost,
+    deleteP
 };
 
 
@@ -80,6 +81,23 @@ function like(uid, pid) {
     function request(likeResult) { return {type: dataConstants.LIKE_REQUEST, likeResult}}
     function success(likeResult) { return { type: dataConstants.LIKE_SUCCESS, likeResult}}
     function failure(error) { return { type: dataConstants.LIKE_FAILURE, error}}
+}
+
+function deleteP(pid) {
+    return dispatch => {
+        dispatch(request({pid}));
+
+        dataService.deleteP(pid);
+        userService.getMyPosts()
+          .then(
+            myposts => dispatch(success(myposts)),
+            error => dispatch(failure(error))
+          );
+    };
+
+    function request() {return {type: dataConstants.DELETE_P_REQUEST}}
+    function success(myposts) {return {type: dataConstants.DELETE_P_SUCCESS, myposts}}
+    function failure(error) {return {type: dataConstants.DELETE_P_FAILURE, error}}
 }
 
 function comment() {}
