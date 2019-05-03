@@ -77,7 +77,7 @@ function getUserProfile(username) {
     return dispatch => {
         dispatch(request({username}));
 
-        userService.getProfile(username)
+        userService.getUserProfile(username)
           .then(
             profile => dispatch(success(profile)),
             error => dispatch(failure(error))

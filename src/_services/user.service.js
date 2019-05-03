@@ -10,6 +10,7 @@ export const userService = {
   getMyPosts,
   getUserPosts,
   getProfile,
+  getUserProfile,
   editProfile
 };
 
@@ -46,6 +47,17 @@ function getProfile() {
       method: "OPTIONS",
       headers: authHeader(),
       body: JSON.stringify({"username": get_username()})
+    }
+  ).then(handle_getMyProfileData)
+}
+
+function getUserProfile(username) {
+  return fetch(
+    apiConstants.getProfile,
+    {
+      method: "OPTIONS",
+      headers: authHeader(),
+      body: JSON.stringify({"username": username})
     }
   ).then(handle_getMyProfileData)
 }
