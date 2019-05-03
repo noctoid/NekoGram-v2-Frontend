@@ -110,7 +110,13 @@ function like(pid) {
   return fetch(
     apiConstants.likePost,
     options
-  ).then(res => res.text().then(console.log));
+  ).then(res => res.text().then(text => {
+    const data = text && JSON.parse(text);
+    console.log(data);
+    if (res.ok) {
+      return true;
+    }
+  }));
 }
 
 function deleteP(pid) {

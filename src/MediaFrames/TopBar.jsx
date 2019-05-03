@@ -18,7 +18,7 @@ function TopBar(props) {
       </div>
       <div className="col-md-3">
         <p>
-          <Link to="/new_post" component={NewPost}>Post</Link>
+          <Link to="/new_post">Post</Link>
           <Link to="/login">Logout</Link>
         </p>
       </div>

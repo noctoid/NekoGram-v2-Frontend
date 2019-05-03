@@ -71,12 +71,21 @@ function like(pid) {
     return dispatch => {
         dispatch(request({pid}));
 
-        dataService.like(pid);
-        userService.getMyPosts()
-          .then(
-            myposts => {dispatch(success(myposts));},
-            error => {dispatch(failure(error));}
-          );
+        const likeStatus = dataService.like(pid);
+        if (likeStatus) {
+            userService.getMyPosts()
+              .then(
+                myposts => {
+                    dispatch(success(myposts));
+                    window.location.reload();
+                },
+                error => {
+                    dispatch(failure(error));
+                }
+              );
+        } else {
+            error => {dispatch(failure(error))};
+        }
     };
 
     function request(myposts) { return {type: dataConstants.LIKE_REQUEST, myposts}}
@@ -91,7 +100,9 @@ function deleteP(pid) {
         dataService.deleteP(pid);
         userService.getMyPosts()
           .then(
-            myposts => dispatch(success(myposts)),
+            myposts => {
+                dispatch(success(myposts));
+                window.location.reload();},
             error => dispatch(failure(error))
           );
     };

@@ -12,15 +12,15 @@ class Posting extends Component {
     let postingMedia;
     if (posting.content.hasMedia || posting.root_content.content.hasMedia) {
       if (posting.content.hasMedia) {
-        if (posting.content.mimeType == "image/png" || posting.content.mimeType == "image/jpeg" || posting.content.mimeType == "image/webp") {
+        if (posting.content.mimeType === "image/png" || posting.content.mimeType === "image/jpeg" || posting.content.mimeType === "image/webp") {
           postingMedia = <img className="img-responsive" src={posting.content.mediaUrl} alt="media"/>;
         } else {
           postingMedia = <p>TODO</p>;
         }
       } else {
-        if (posting.root_content.content.mimeType == "image/png" ||
-          posting.root_content.content.mimeType == "image/jpeg" ||
-          posting.root_content.content.mimeType == "image/webp") {
+        if (posting.root_content.content.mimeType === "image/png" ||
+          posting.root_content.content.mimeType === "image/jpeg" ||
+          posting.root_content.content.mimeType === "image/webp") {
           postingMedia = <img className="img-responsive" src={posting.root_content.content.mediaUrl} alt="media"/>;
         } else {
           postingMedia = <p>TODO</p>;
@@ -65,6 +65,7 @@ class Posting extends Component {
           <div className="panel panel-default posting">
             <div className="row">
               <p>{posting.displayName} Likes</p>
+              <DeleteButton pid={posting.pid}/>
             </div>
             <div className="row">
               <div className="col-md-1">
