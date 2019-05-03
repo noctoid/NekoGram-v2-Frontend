@@ -10,11 +10,21 @@ class Posting extends Component {
     // console.log("Posting >>>", this.props);
     // generate the media block containing the media
     let postingMedia;
-    if (posting.content.hasMedia) {
-      if (posting.content.mimeType == "image/png" || posting.content.mimeType == "image/jpeg" || posting.content.mimeType == "image/webp") {
-        postingMedia = <img className="img-responsive" src={posting.content.mediaUrl} alt="media"/>;
+    if (posting.content.hasMedia || posting.root_content.content.hasMedia) {
+      if (posting.content.hasMedia) {
+        if (posting.content.mimeType == "image/png" || posting.content.mimeType == "image/jpeg" || posting.content.mimeType == "image/webp") {
+          postingMedia = <img className="img-responsive" src={posting.content.mediaUrl} alt="media"/>;
+        } else {
+          postingMedia = <p>TODO</p>;
+        }
       } else {
-        postingMedia = <p>TODO</p>;
+        if (posting.root_content.content.mimeType == "image/png" ||
+          posting.root_content.content.mimeType == "image/jpeg" ||
+          posting.root_content.content.mimeType == "image/webp") {
+          postingMedia = <img className="img-responsive" src={posting.root_content.content.mediaUrl} alt="media"/>;
+        } else {
+          postingMedia = <p>TODO</p>;
+        }
       }
     }
 
@@ -54,15 +64,23 @@ class Posting extends Component {
         return (
           <div className="panel panel-default posting">
             <div className="row">
+              <p>{posting.displayName} Likes</p>
+            </div>
+            <div className="row">
               <div className="col-md-1">
                 {/*<p>pid: {posting.pid}</p>*/}
-                <img src={posting.avatarUrl} className="avatar-sm"/>
+                <img src={posting.root_content.avatarUrl} className="avatar-sm"/>
               </div>
               <div className="col-md-11">
                 <div className="col-md-12">
-                  <h4>{posting.displayName} @{posting.username} liked</h4>
+                  <h4>{posting.root_content.displayName} @{posting.root_content.username} says</h4>
                   <hr/>
-                  <p>{posting.root}</p>
+                  <p>{posting.root_content.content.txt}</p>
+                  {postingMedia}
+
+                  <LikeButton pid={posting.root_content.pid}/>
+                  <DeleteButton pid={posting.root_content.pid}/>
+                  <p>Comments: {commentCount} Repost: {repostCount} Likes: {likesCount}</p>
                 </div>
               </div>
             </div>
