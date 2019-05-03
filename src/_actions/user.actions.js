@@ -8,7 +8,9 @@ export const userActions = {
     logout,
     getAll,
     getMyPosts,
+    getUserPosts,
     getProfile,
+    getUserProfile,
     editProfile
 };
 
@@ -71,19 +73,51 @@ function getProfile() {
     function failure(error) { return { type: userConstants.GETMYPOSTS_FAILURE, error }}
 }
 
+function getUserProfile(username) {
+    return dispatch => {
+        dispatch(request({username}));
+
+        userService.getProfile(username)
+          .then(
+            profile => dispatch(success(profile)),
+            error => dispatch(failure(error))
+          );
+    };
+
+    function request() { return { type: userConstants.GETPROFILE_REQUEST}}
+    function success(profile) { return { type: userConstants.GETPROFILE_SUCCESS, profile }}
+    function failure(error) { return { type: userConstants.GETMYPOSTS_FAILURE, error }}
+}
+
+
 function getMyPosts() {
     return dispatch => {
         dispatch(request());
         userService.getMyPosts()
             .then(
-                myposts => dispatch(success(myposts)),
+                posts => dispatch(success(posts)),
                 error => dispatch(failure(error))
             );
     };
 
-    function request() {return { type: userConstants.GETMYPOSTS_REQUEST } }
-    function success(myposts) { return { type: userConstants.GETMYPOSTS_SUCCESS, myposts } }
-    function failure(error) { return { type: userConstants.GETMYPOSTS_FAILURE, error}}
+    function request() {return { type: userConstants.GET_POSTS_REQUEST } }
+    function success(posts) { return { type: userConstants.GET_POSTS_SUCCESS, posts } }
+    function failure(error) { return { type: userConstants.GET_POSTS_FAILURE, error}}
+}
+
+function getUserPosts(username) {
+    return dispatch => {
+        dispatch(request({username}));
+        userService.getUserPosts(username)
+          .then(
+            posts => dispatch(success(posts)),
+            error => dispatch(failure(error))
+          );
+    };
+
+    function request() {return { type: userConstants.GET_POSTS_REQUEST } }
+    function success(posts) { return { type: userConstants.GET_POSTS_SUCCESS, posts } }
+    function failure(error) { return { type: userConstants.GET_POSTS_FAILURE, error}}
 }
 
 function editProfile(displayName, quote, themeColor, avatarUrl) {

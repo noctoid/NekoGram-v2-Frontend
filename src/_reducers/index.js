@@ -3,7 +3,7 @@ import { combineReducers } from 'redux';
 import { authentication } from './authentication.reducer';
 import { users } from './users.reducer';
 import { profile } from './users.reducer';
-import { myposts } from "./users.reducer";
+import { posts } from "./users.reducer";
 import { newProfile } from "./users.reducer";
 import { posting } from "./data.reducer";
 import { postStatus } from "./data.reducer";
@@ -15,7 +15,7 @@ const rootReducer = combineReducers({
   authentication,
   users,
   profile,
-  myposts,
+  posts,
   newProfile,
   posting,
   postStatus,

@@ -75,8 +75,8 @@ function like(pid) {
         if (likeStatus) {
             userService.getMyPosts()
               .then(
-                myposts => {
-                    dispatch(success(myposts));
+                posts => {
+                    dispatch(success(posts));
                     window.location.reload();
                 },
                 error => {
@@ -88,8 +88,8 @@ function like(pid) {
         }
     };
 
-    function request(myposts) { return {type: dataConstants.LIKE_REQUEST, myposts}}
-    function success(myposts) { return { type: dataConstants.LIKE_SUCCESS, myposts}}
+    function request(posts) { return {type: dataConstants.LIKE_REQUEST, posts}}
+    function success(posts) { return { type: dataConstants.LIKE_SUCCESS, posts}}
     function failure(error) { return { type: dataConstants.LIKE_FAILURE, error}}
 }
 

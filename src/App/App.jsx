@@ -8,6 +8,8 @@ import {PrivateRoute} from '../_components';
 import {HomePage} from '../HomePage';
 import {LoginPage} from '../LoginPage';
 import {ProfilePage} from "../ProfilePage";
+import {Discover} from "../Discover";
+import {UserPage} from "../UserPage";
 
 class App extends React.Component {
   constructor(props) {
@@ -33,8 +35,11 @@ class App extends React.Component {
           <div>
             <PrivateRoute exact path="/" component={HomePage}/>
             <Route path="/login" component={LoginPage}/>
-            <Route path="/profile" component={ProfilePage}/>
-            <Route path="/114514" exact render={() =>
+            <PrivateRoute path="/profile" component={ProfilePage}/>
+            <PrivateRoute path="/discover" component={Discover} />
+            <PrivateRoute path="/feed" component={HomePage} />
+            <Route path="/user" component={UserPage}/>
+            <PrivateRoute path="/114514" exact render={() =>
               <div>
                 <img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Flag_of_the_Soviet_Union.svg" />
                 <audio src="https://www.marxists.org/history/ussr/sounds/mp3/soviet-anthem.mp3" autoPlay></audio>

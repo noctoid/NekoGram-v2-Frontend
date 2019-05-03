@@ -7,7 +7,7 @@ function NewPostBall(props) {
     <div className="bottom-right ball">
       <p>
         <Link to="/new_post">
-          <img className="avatar-md" src="http://icons.iconarchive.com/icons/danleech/simple/512/livejournal-icon.png"/>
+          <img className="avatar-lg" src="https://s3-us-west-2.amazonaws.com/noctoid/media/icons8-pencil-drawing-48.png"/>
         </Link>
       </p>
     </div>

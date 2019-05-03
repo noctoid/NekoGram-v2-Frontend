@@ -10,11 +10,14 @@ import {Posting} from "../MediaFrames/Posting";
 import {ProfilePage} from "../ProfilePage";
 import {Discover} from "../Discover";
 import {NewPost} from "../NewPost";
+import {UserPage} from "../UserPage";
 
 import {apiConstants} from "../_constants";
 import {TopBar} from "../MediaFrames/TopBar";
 import {BriefProfile} from "../MediaFrames/BriefProfile";
 import {NewPostBall} from "../MediaFrames/NewPostBall";
+import {PrivateRoute} from "../_components";
+
 
 class HomePage extends React.Component {
   componentDidMount() {
@@ -23,19 +26,19 @@ class HomePage extends React.Component {
   };
 
   render() {
-    const {myposts, profile} = this.props;
+    const {posts, profile} = this.props;
 
     return (
       <div>
         {/*<TopBar/>*/}
-        <Router>
+        {/*<Router>*/}
           <div>
             {/*<TopBar/>*/}
             {/*<div className="row">*/}
 
               {/*My Posts*/}
-              <Route path="/login" component={LoginPage}/>
-              <Route path="/" exact render={() =>
+              {/*<Route path="/login" component={LoginPage}/>*/}
+              {/*<Route path="/" exact render={() =>*/}
                 <div>
                   <TopBar/>
                   <div className="row page-content">
@@ -43,11 +46,11 @@ class HomePage extends React.Component {
                                   displayName={profile.items && profile.items.displayName}
                                   username={profile.items && profile.items.username}/>
                     <div className="col-md-8 col-sm-12">
-                      {myposts.loading && <em>Loading Posts...</em>}
-                      {myposts.error && <span className="text-danger">ERROR: {myposts.error}</span>}
-                      {myposts.items &&
+                      {posts.loading && <em>Loading Posts...</em>}
+                      {posts.error && <span className="text-danger">ERROR: {posts.error}</span>}
+                      {posts.items &&
                       <div>
-                        {myposts.items.map((i, index1) =>
+                        {posts.items.map((i, index1) =>
                           <Posting key={index1} posting={i}/>
                         )}
                       </div>
@@ -56,14 +59,16 @@ class HomePage extends React.Component {
                   </div>
                   <NewPostBall/>
                 </div>
-              }/>
-              <Route path="/profile" exact component={ProfilePage}/>
-              <Route path="/discover" component={Discover}/>
-              <Route path="/new_post" component={NewPost}/>
+              {/*}/>*/}
+              {/*<PrivateRoute path="/user" component={UserPage}/>*/}
+              {/*<PrivateRoute path="/profile" exact component={ProfilePage}/>*/}
+              {/*<Route path="/profile" exact component={ProfilePage}/>*/}
+              {/*<PrivateRoute path="/discover" component={Discover}/>*/}
+              {/*<PrivateRoute path="/new_post" component={NewPost}/>*/}
             {/*</div>*/}
 
           </div>
-        </Router>
+        {/*</Router>*/}
       </div>
     );
   }
@@ -73,10 +78,10 @@ class HomePage extends React.Component {
 function mapStateToProps(state) {
   // console.log("state is ", state);
   // console.log(state.myposts);
-  const {myposts, profile} = state;
+  const {posts, profile} = state;
   // console.log(myposts);
 
-  return {myposts, profile};
+  return {posts, profile};
   // const { users, authentication } = state;
   // const { user } = authentication;
   // return {

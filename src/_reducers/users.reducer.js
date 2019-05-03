@@ -32,13 +32,13 @@ export const profile = (state = {}, action) => {
   }
 };
 
-export const myposts = (state = {}, action) => {
+export const posts = (state = {}, action) => {
   switch (action.type) {
-    case userConstants.GETMYPOSTS_REQUEST:
+    case userConstants.GET_POSTS_REQUEST:
       return { loading: true };
-    case userConstants.GETMYPOSTS_SUCCESS:
-      return {items: action.myposts};
-    case userConstants.GETMYPOSTS_FAILURE:
+    case userConstants.GET_POSTS_SUCCESS:
+      return {items: action.posts};
+    case userConstants.GET_POSTS_FAILURE:
       return {
         items: action.error
       };

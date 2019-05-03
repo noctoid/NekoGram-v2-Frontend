@@ -8,6 +8,7 @@ export const userService = {
   logout,
   getAll,
   getMyPosts,
+  getUserPosts,
   getProfile,
   editProfile
 };
@@ -80,6 +81,15 @@ function handleResponse(response) {
   });
 }
 
+function getUserPosts(username) {
+  return fetch(
+    apiConstants.getUserPosts,
+    {
+      method: "OPTIONS",
+      headers: authHeader(),
+      body: JSON.stringify({"username": username})
+    }).then(handle_getMyPostsData)
+}
 
 function getMyPosts() {
   return fetch(
@@ -87,7 +97,7 @@ function getMyPosts() {
     {
       method: "OPTIONS",
       headers: authHeader(),
-      body: JSON.stringify({"username": "noctoid"})
+      body: JSON.stringify({"username": get_username()})
     }).then(handle_getMyPostsData)
 }
 
