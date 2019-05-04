@@ -37,6 +37,7 @@ class Discover extends React.Component {
           <form onSubmit={this.handleSubmit} className="jumbotron middle-content-float">
 
             <div className="row">
+              <h2>Discover</h2>
               <div className="form-group has-feedback">
                 <div>
                   <input type="text" className="form-control" onChange={this.handleChange} name="query" value={query}/>

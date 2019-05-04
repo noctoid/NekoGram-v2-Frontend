@@ -1,9 +1,7 @@
 import React, {Component} from 'react';
 import {LikeButton} from "./LikeButton";
-import {DeleteButton} from "./DeleteButton";
 
 class SearchResult extends Component {
-
   render() {
     // get actual data from props
     const {result} = this.props;
@@ -11,7 +9,7 @@ class SearchResult extends Component {
     if (result.quote != null) {
       // user
       return (
-        <div className="panel panel-default posting">
+        <div className="panel panel-default posting" onClick={() => location.href = "../user?username="+result.username}>
           <div className="row">
             <div className="col-md-1">
               {/*<p>pid: {posting.pid}</p>*/}
