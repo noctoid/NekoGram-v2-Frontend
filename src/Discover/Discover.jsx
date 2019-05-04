@@ -34,12 +34,14 @@ class Discover extends React.Component {
       <div>
         <TopBar/>
         <div className="container page-content">
-          <form onSubmit={this.handleSubmit}>
+          <form onSubmit={this.handleSubmit} className="jumbotron">
 
             <div className="row">
-              <div className="form-group">
-                <label>Search</label>
-                <input type="text" className="form-control" onChange={this.handleChange} name="query" value={query}/>
+              <div className="form-group has-feedback">
+                <div>
+                  <input type="text" className="form-control" onChange={this.handleChange} name="query" value={query}/>
+                  <i className="glyphicon glyphicon-search form-control-feedback"></i>
+                </div>
                 <input type="submit" className="form-control" name="submit"/>
               </div>
             </div>
