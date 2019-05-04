@@ -4,6 +4,7 @@ import {history} from "../_helpers";
 import {alertActions} from "./alert.actions";
 
 export const dataActions = {
+    search,
     getPosting,
     newPost,
     newMedia,
@@ -13,6 +14,20 @@ export const dataActions = {
     deleteP
 };
 
+function search(query) {
+    return dispatch => {
+        dispatch(request({query}));
+        dataService.search(query)
+          .then(
+            searchResult => dispatch(success(searchResult)),
+            error => dispatch(failure(error))
+          );
+    };
+
+    function request() {return { type: dataConstants.SEARCH_REQUEST}}
+    function success(searchResult) {return {type: dataConstants.SEARCH_SUCCESS, searchResult}}
+    function failure(error) {return {type: dataConstants.SEARCH_FAILURE, error}}
+}
 
 function getPosting(pid) {
     return dispatch => {

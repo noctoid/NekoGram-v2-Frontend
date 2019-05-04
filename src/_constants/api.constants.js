@@ -11,5 +11,6 @@ export const apiConstants = {
   newPost: SERVER+"api/p/create/",
   deletePost: SERVER+"api/p/delete/",
   likePost: SERVER+"api/p/like/",
+  search: SERVER+"api/search/"
 };
 

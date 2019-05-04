@@ -5,6 +5,7 @@ import { users } from './users.reducer';
 import { profile } from './users.reducer';
 import { posts } from "./users.reducer";
 import { newProfile } from "./users.reducer";
+import { searchResult } from "./data.reducer";
 import { posting } from "./data.reducer";
 import { postStatus } from "./data.reducer";
 import { mediaUrl } from './data.reducer';
@@ -17,6 +18,7 @@ const rootReducer = combineReducers({
   profile,
   posts,
   newProfile,
+  searchResult,
   posting,
   postStatus,
   mediaUrl,

@@ -4,12 +4,29 @@ import fetch from "cross-fetch";
 import {apiConstants} from "../_constants";
 
 export const dataService = {
+  search,
   getPosting,
   newPost,
   newMedia,
   like,
   deleteP
 };
+
+function search(query) {
+  const options = {
+    method: "OPTIONS",
+    headers: authHeader(),
+    body: JSON.stringify({
+      "query": query,
+    })
+  };
+  return fetch(apiConstants.search, options)
+    .then(res => res.text()
+      .then(text => {
+        console.log(text);
+        return text && JSON.parse(text);
+      }));
+}
 
 function getPosting(pid) {
   return fetch(

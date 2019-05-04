@@ -1,5 +1,17 @@
 import {dataConstants} from "../_constants";
 
+export const searchResult = (state = [], action) => {
+  switch (action.type) {
+    case dataConstants.SEARCH_REQUEST:
+      return {loading: true};
+    case dataConstants.SEARCH_SUCCESS:
+      return {items: action.searchResult};
+    case dataConstants.SEARCH_FAILURE:
+      return {items: action.error};
+    default:
+      return state;
+  }
+};
 
 export const posting = (state = [], action) => {
   switch (action.type) {
