@@ -34,7 +34,7 @@ class Discover extends React.Component {
       <div>
         <TopBar/>
         <div className="container page-content">
-          <form onSubmit={this.handleSubmit} className="jumbotron">
+          <form onSubmit={this.handleSubmit} className="jumbotron middle-content-float">
 
             <div className="row">
               <div className="form-group has-feedback">
@@ -51,7 +51,7 @@ class Discover extends React.Component {
           {searchResult.loading && <em>Loading Posts...</em>}
           {searchResult.error && <span className="text-danger">ERROR: {searchResult.error}</span>}
           {searchResult.items &&
-          <div>
+          <div className="middle-content-float">
             {searchResult.items.result.map((i, index) =>
               <SearchResult key={index} result={i} />
             )}
