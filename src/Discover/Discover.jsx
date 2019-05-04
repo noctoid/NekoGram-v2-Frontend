@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {TopBar} from "../MediaFrames/TopBar";
 import {dataActions} from "../_actions";
-import {Posting} from "../MediaFrames/Posting";
+import {SearchResult} from "../MediaFrames/SearchResult";
 
 class Discover extends React.Component {
   constructor(props) {
@@ -78,7 +78,7 @@ class Discover extends React.Component {
           {searchResult.items &&
           <div>
             {searchResult.items.result.map((i, index) =>
-              <Posting key={index} posting={i} />
+              <SearchResult key={index} result={i} />
             )}
           </div>
           }
