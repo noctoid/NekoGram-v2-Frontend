@@ -51,7 +51,7 @@ class HomePage extends React.Component {
                       {posts.items &&
                       <div>
                         {posts.items.map((i, index1) =>
-                          <Posting key={index1} SearchResult={i}/>
+                          <Posting key={index1} posting={i}/>
                         )}
                       </div>
                       }

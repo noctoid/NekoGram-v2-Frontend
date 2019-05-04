@@ -8,11 +8,7 @@ class Discover extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      query: "",
-      user: true,
-      posting: false,
-      tag: false,
-      nyan: false
+      query: ""
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -47,29 +43,6 @@ class Discover extends React.Component {
                 <input type="submit" className="form-control" name="submit"/>
               </div>
             </div>
-
-
-            <div className="row">
-              <div className="form-group">
-                <div className="col-md-3">
-                  <label>User</label>
-                  <input type="radio" className="form-control" onChange={this.handleChange} name="user" value={user}/>
-                </div>
-                <div className="col-md-3">
-                  <label>Posting</label>
-                  <input type="radio" className="form-control" onChange={this.handleChange} name="posting" value={posting}/>
-                </div>
-                <div className="col-md-3">
-                  <label>Tag</label>
-                  <input type="radio" className="form-control" onChange={this.handleChange} name="tag" value={tag}/>
-                </div>
-                <div className="col-md-3">
-                  <label>Nyan</label>
-                  <input type="radio" className="form-control" onChange={this.handleChange} name="nyan" value={nyan}/>
-                </div>
-              </div>
-            </div>
-
 
           </form>
 
