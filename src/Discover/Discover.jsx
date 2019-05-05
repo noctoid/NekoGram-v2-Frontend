@@ -28,7 +28,7 @@ class Discover extends React.Component {
   }
 
   render() {
-    const {query, user, posting, tag, nyan} = this.state;
+    const {query} = this.state;
     const {searchResult} = this.props;
     return (
       <div>
@@ -41,7 +41,7 @@ class Discover extends React.Component {
               <div className="form-group has-feedback">
                 <div>
                   <input type="text" className="form-control" onChange={this.handleChange} name="query" value={query}/>
-                  <i className="glyphicon glyphicon-search form-control-feedback"></i>
+                  <i className="glyphicon glyphicon-search form-control-feedback"/>
                 </div>
                 <input type="submit" className="form-control" name="submit"/>
               </div>

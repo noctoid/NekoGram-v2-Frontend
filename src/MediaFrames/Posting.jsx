@@ -33,9 +33,6 @@ class Posting extends Component {
     let commentCount = posting.comments.length;
     let repostCount = posting.repost.length;
 
-
-    let postingContent = "";
-
     switch (posting.type) {
       case "posting":
         return (

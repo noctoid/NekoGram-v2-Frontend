@@ -146,3 +146,7 @@ function editProfile(displayName, quote, themeColor, avatarUrl) {
       })
     }).then(console.log);
 }
+
+function follow(uid_to_follow) {
+  console.log(uid_to_follow);
+}
