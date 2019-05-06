@@ -11,7 +11,10 @@ export const userService = {
   getUserPosts,
   getProfile,
   getUserProfile,
-  editProfile
+  editProfile,
+  follow,
+  unfollow,
+  getFollow
 };
 
 function login(username, password) {
@@ -57,7 +60,11 @@ function getUserProfile(username) {
     {
       method: "OPTIONS",
       headers: authHeader(),
-      body: JSON.stringify({"username": username})
+      body: JSON.stringify({
+        "my_username": get_username(),
+        "my_uid": get_uid(),
+        "username": username
+      })
     }
   ).then(handle_getMyProfileData)
 }
@@ -147,6 +154,47 @@ function editProfile(displayName, quote, themeColor, avatarUrl) {
     }).then(console.log);
 }
 
-function follow(uid_to_follow) {
-  console.log(uid_to_follow);
+function follow(username_to_follow) {
+  console.log("username to follow", username_to_follow);
+  const options = {
+    method: "OPTIONS",
+    headers: authHeader(),
+    body: JSON.stringify({
+      "username": get_username(),
+      "username_to_follow": username_to_follow
+    })
+  };
+  return fetch(apiConstants.follow, options)
+    .then(response => response.text().then(console.log))
+}
+
+function unfollow(username_to_unfollow) {
+  console.log("username to unfollow", username_to_unfollow);
+  const options = {
+    method: "OPTIONS",
+    headers: authHeader(),
+    body: JSON.stringify({
+      "username": get_username(),
+      "username_to_unfollow": username_to_unfollow
+    })
+  };
+  return fetch(apiConstants.unfollow, options)
+    .then(response => response.text().then(console.log))
+}
+
+function getFollow(uid) {
+  console.log("getting follow for ", uid);
+  const options = {
+    method: "OPTIONS",
+    headers: authHeader(),
+    body: JSON.stringify({
+      "uid": uid
+    })
+  };
+  return fetch(
+    apiConstants.getFollow,
+    options
+  ).then(res => res.text().then(text => {
+    text && JSON.parse(text)
+  }));
 }

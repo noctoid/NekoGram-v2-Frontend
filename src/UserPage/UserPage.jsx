@@ -27,7 +27,10 @@ class UserPage extends React.Component {
           <div className="row page-content">
             <BriefProfile avatarUrl={profile.items && profile.items.avatarUrl}
                           displayName={profile.items && profile.items.displayName}
-                          username={profile.items && profile.items.username}/>
+                          username={profile.items && profile.items.username}
+                          quote={profile.items && profile.items.quote}
+                          followers={profile.items && profile.items.followers}
+                          isFollowing={profile.items && profile.items.isFollowing}/>
             <div className="col-md-8 col-sm-12">
               {posts.loading && <em>Loading Posts...</em>}
               {posts.error && <span className="text-danger">ERROR: {posts.error}</span>}

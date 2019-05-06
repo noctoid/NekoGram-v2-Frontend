@@ -11,6 +11,9 @@ export const apiConstants = {
   newPost: SERVER+"api/p/create/",
   deletePost: SERVER+"api/p/delete/",
   likePost: SERVER+"api/p/like/",
-  search: SERVER+"api/search/"
+  search: SERVER+"api/search/",
+  getFollow: SERVER+"api/u/get_follow/",
+  follow: SERVER+"api/u/follow/",
+  unfollow: SERVER+"api/u/unfollow/"
 };
 

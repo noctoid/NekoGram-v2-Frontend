@@ -60,6 +60,19 @@ export const newProfile = (state = {}, action) => {
   }
 };
 
+export const MyFollow = (state = {}, action) => {
+  switch (action.type) {
+    case userConstants.GET_MY_FOLLOW_REQUEST:
+      return {loading: true};
+    case userConstants.GET_MY_FOLLOW_SUCCESS:
+      return {items: action.MyFollow};
+    case userConstants.GET_MY_FOLLOW_FAILURE:
+      return {items: action.error};
+    default:
+      return state;
+  }
+};
+
 // export function myposts(state = {}, action) {
 //   switch (action.type) {
 //     case userConstants.GETMYPOSTS_REQUEST:

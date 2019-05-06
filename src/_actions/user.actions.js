@@ -1,7 +1,7 @@
 import { userConstants } from '../_constants';
 import { userService } from '../_services';
 import { alertActions } from './';
-import { history } from '../_helpers';
+import {get_uid, get_username, history} from '../_helpers';
 
 export const userActions = {
     login,
@@ -11,7 +11,10 @@ export const userActions = {
     getUserPosts,
     getProfile,
     getUserProfile,
-    editProfile
+    editProfile,
+    follow,
+    unfollow,
+    getMyFollow
 };
 
 function login(username, password) {
@@ -128,8 +131,55 @@ function editProfile(displayName, quote, themeColor, avatarUrl) {
             newProfile => dispatch(success(newProfile)),
             error => dispatch(failure(error))
           );
-    }
+    };
     function request() {return { type: userConstants.EDIT_PROFILE_REQUEST } }
     function success(newProfile) { return { type: userConstants.EDIT_PROFILE_SUCCESS, newProfile } }
     function failure(error) { return { type: userConstants.EDIT_PROFILE_FAILURE, error}}
+}
+
+function follow(username) {
+    return dispatch => {
+        dispatch(request());
+        userService.follow(username);
+        userService.getFollow(get_username())
+          .then(
+            MyFollow => {dispatch(success(MyFollow));window.location.reload();},
+            error => dispatch(failure(error))
+          );
+    };
+
+    function request() { return {type: userConstants.FOLLOW_REQUEST}}
+    function success(MyFollow) { return {type: userConstants.FOLLOW_SUCCESS, MyFollow}}
+    function failure(error) { return {type: userConstants.FOLLOW_FAILURE, error}}
+}
+
+function unfollow(username) {
+    return dispatch => {
+        dispatch(request());
+        userService.unfollow(username);
+        userService.getFollow(get_username())
+          .then(
+            MyFollow => {dispatch(success(MyFollow)); window.location.reload();},
+            error => dispatch(failure(error))
+          );
+    };
+
+    function request() { return {type: userConstants.UNFOLLOW_REQUEST}}
+    function success(MyFollow) { return {type: userConstants.UNFOLLOW_SUCCESS, MyFollow}}
+    function failure(error) { return {type: userConstants.UNFOLLOW_FAILURE, error}}
+}
+
+function getMyFollow() {
+    return dispatch => {
+        dispatch(request());
+        userService.getFollow(get_uid())
+          .then(
+            MyFollow => dispatch(success(MyFollow)),
+            error => dispatch(failure(error))
+          );
+    };
+
+    function request() { return {type: userConstants.GET_MY_FOLLOW_REQUEST}}
+    function success(MyFollow) { return {type: userConstants.GET_MY_FOLLOW_SUCCESS, MyFollow}}
+    function failure(error) { return {type: userConstants.GET_MY_FOLLOW_FAILURE, error}}
 }

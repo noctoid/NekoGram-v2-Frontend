@@ -23,6 +23,7 @@ class HomePage extends React.Component {
   componentDidMount() {
     this.props.dispatch(userActions.getMyPosts());
     this.props.dispatch(userActions.getProfile());
+    this.props.dispatch(userActions.getMyFollow());
   };
 
   render() {
@@ -41,10 +42,11 @@ class HomePage extends React.Component {
               {/*<Route path="/" exact render={() =>*/}
                 <div>
                   <TopBar/>
-                  <div className="row page-content">
+                  <div className="page-content">
                     <BriefProfile avatarUrl={profile.items && profile.items.avatarUrl}
                                   displayName={profile.items && profile.items.displayName}
-                                  username={profile.items && profile.items.username}/>
+                                  username={profile.items && profile.items.username}
+                                  followers={profile.items && profile.items.followers}/>
                     <div className="col-md-8 col-sm-12">
                       {posts.loading && <em>Loading Posts...</em>}
                       {posts.error && <span className="text-danger">ERROR: {posts.error}</span>}
