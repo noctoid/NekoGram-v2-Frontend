@@ -93,7 +93,7 @@ class ProfilePage extends React.Component {
     if (avatarUrl) {
       $imagePreview = (<img src={avatarUrl} className="img-responsive avatar-lg"/>);
     } else {
-      $imagePreview = (<div className="previewText"></div>);
+      $imagePreview = (<div className="previewText"/>);
     }
 
     return (
@@ -102,7 +102,12 @@ class ProfilePage extends React.Component {
         <div className="page-content">
           <BriefProfile avatarUrl={profile.items && profile.items.avatarUrl}
                         displayName={profile.items && profile.items.displayName}
-                        username={profile.items && profile.items.username}/>
+                        username={profile.items && profile.items.username}
+                        quote={profile.items && profile.items.quote}
+                        numFollowers={profile.items && profile.items.followers.length}
+                        numFollowing={profile.items && profile.items.following.length}
+                        numPostings={profile.items && profile.items.postings.length}
+                        isFollowing={profile.items && profile.items.isFollowing}/>
           <div className="col-md-8 col-sm-12">
 
             <h2>ProfilePage</h2>

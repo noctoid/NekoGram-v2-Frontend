@@ -1,19 +1,11 @@
 import React from "react";
 import {FollowButton} from "./FollowButton";
 import {UnfollowButton} from "./UnfollowButton";
-import {get_uid} from "../_helpers";
 
 function BriefProfile(props) {
-  console.log(props);
-  let following;
-  const {avatarUrl, displayName, username, quote, followers, isFollowing} = props;
-  // console.log("Follower", props.followers);
-  // props.followers.map((follower, index) => {
-  //   if (follower === get_uid()) {
-  //     following = true;
-  //   }
-  // });
-  console.log(isFollowing);
+
+
+  const {avatarUrl, displayName, username, quote, numFollowers, numFollowing, numPostings, isFollowing} = props;
 
   let followButton;
 
@@ -29,7 +21,19 @@ function BriefProfile(props) {
       <h3>{displayName}</h3>
       <h5>@{username}</h5>
       <p>{quote}</p>
-      <p>{followers}</p>
+
+      <div className="row">
+        <div className="col-md-4">
+          <label>Postings</label> {numPostings}
+        </div>
+        <div className="col-md-4">
+          <label>Following</label> {numFollowing}
+        </div>
+        <div className="col-md-4">
+          <label>Followers</label> {numFollowers}
+        </div>
+      </div>
+      <br/>
       {followButton}
     </div>
   );

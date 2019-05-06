@@ -29,7 +29,9 @@ class UserPage extends React.Component {
                           displayName={profile.items && profile.items.displayName}
                           username={profile.items && profile.items.username}
                           quote={profile.items && profile.items.quote}
-                          followers={profile.items && profile.items.followers}
+                          numFollowers={profile.items && profile.items.followers.length}
+                          numFollowing={profile.items && profile.items.following.length}
+                          numPostings={profile.items && profile.items.postings.length}
                           isFollowing={profile.items && profile.items.isFollowing}/>
             <div className="col-md-8 col-sm-12">
               {posts.loading && <em>Loading Posts...</em>}

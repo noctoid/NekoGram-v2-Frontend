@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import {connect} from "react-redux";
-import {dataActions, userActions} from "../_actions";
-import {get_username} from "../_helpers";
+import {userActions} from "../_actions";
+
 
 class UnfollowButton extends Component {
   constructor(props) {
@@ -17,13 +17,10 @@ class UnfollowButton extends Component {
   }
 
   render() {
-    const username = this.props.username;
-    console.log("***", username);
-
     return (
       <div>
         <button onClick={this.handleUnfollow}>
-          -Unfollow
+          Following
         </button>
       </div>
     );
@@ -36,5 +33,4 @@ function mapStateToProps(state) {
 }
 
 const connectedUnfollowButton = connect(mapStateToProps)(UnfollowButton);
-
 export {connectedUnfollowButton as UnfollowButton};

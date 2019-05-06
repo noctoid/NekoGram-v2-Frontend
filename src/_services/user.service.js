@@ -1,6 +1,4 @@
 import {authHeader, get_username, get_uid} from '../_helpers';
-import {current_user_token} from "../_helpers";
-
 import {apiConstants} from "../_constants";
 
 export const userService = {
@@ -49,7 +47,11 @@ function getProfile() {
     {
       method: "OPTIONS",
       headers: authHeader(),
-      body: JSON.stringify({"username": get_username()})
+      body: JSON.stringify({
+        "my_username": get_username(),
+        "my_uid": get_uid(),
+        "username": get_username()
+      })
     }
   ).then(handle_getMyProfileData)
 }
