@@ -6,6 +6,7 @@ export const userService = {
   logout,
   getAll,
   getMyPosts,
+  getFeed,
   getUserPosts,
   getProfile,
   getUserProfile,
@@ -112,6 +113,16 @@ function getUserPosts(username) {
     }).then(handle_getMyPostsData)
 }
 
+function getFeed() {
+  const options = {
+    method: "OPTIONS",
+    headers: authHeader(),
+    body: JSON.stringify({"username": get_username(), "quantity": 50})
+  };
+  return fetch(apiConstants.getFeed, options)
+    .then(handle_getMyPostsData);
+}
+
 function getMyPosts() {
   return fetch(
     apiConstants.getMyPosts,
@@ -125,7 +136,7 @@ function getMyPosts() {
 function handle_getMyPostsData(response) {
   return response.text().then(text => {
     const data = text && JSON.parse(text);
-    // console.log("data should be ", data);
+    console.log("data should be ", data);
     return data.result;
   });
 }

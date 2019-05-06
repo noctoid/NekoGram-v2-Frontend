@@ -11,6 +11,7 @@ import {ProfilePage} from "../ProfilePage";
 import {Discover} from "../Discover";
 import {NewPost} from "../NewPost";
 import {UserPage} from "../UserPage";
+import {FeedPage} from "../FeedPage";
 
 class App extends React.Component {
   constructor(props) {
@@ -34,7 +35,7 @@ class App extends React.Component {
         }
         <Router history={history}>
           <div>
-            <PrivateRoute exact path="/" component={HomePage}/>
+            <PrivateRoute exact path="/" component={FeedPage}/>
             <Route path="/login" component={LoginPage}/>
             <PrivateRoute path="/profile" component={ProfilePage}/>
             <PrivateRoute path="/discover" component={Discover} />

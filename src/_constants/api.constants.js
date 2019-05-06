@@ -6,6 +6,7 @@ export const apiConstants = {
   getProfile: SERVER+"api/u/read/",
   editProfile: SERVER+"api/u/update/",
   getMyPosts: SERVER+"api/p/read_my_posts/",
+  getFeed: SERVER+"api/p/feed/",
   getUserPosts: SERVER+"api/p/read_my_posts/",
   getPosting: SERVER+"api/p/read/",
   newPost: SERVER+"api/p/create/",

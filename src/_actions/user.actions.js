@@ -7,6 +7,7 @@ export const userActions = {
     login,
     logout,
     getAll,
+    getFeed,
     getMyPosts,
     getUserPosts,
     getProfile,
@@ -92,6 +93,20 @@ function getUserProfile(username) {
     function failure(error) { return { type: userConstants.GETMYPOSTS_FAILURE, error }}
 }
 
+function getFeed() {
+    return dispatch => {
+        dispatch(request());
+
+        userService.getFeed()
+          .then(
+            posts => dispatch(success(posts)),
+            error => dispatch(failure(error))
+          );
+    };
+    function request() {return {type: userConstants.GET_POSTS_REQUEST}}
+    function success(posts) {return {type: userConstants.GET_POSTS_SUCCESS, posts}}
+    function failure(error) {return {type: userConstants.GET_POSTS_FAILURE, error}}
+}
 
 function getMyPosts() {
     return dispatch => {
